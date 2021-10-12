@@ -1,0 +1,287 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>
+	Untitled Page
+</title><link href="RegisteredCourses_data/site.html" type="text/css" rel="stylesheet"><link href="RegisteredCourses_data/bootstrap.css" rel="stylesheet" type="text/css">
+    <script language="JavaScript" src="RegisteredCourses_data/calendar.html"></script>
+    <script src="RegisteredCourses_data/bootstrap.html" type="text/javascript"></script>    
+    <script src="RegisteredCourses_data/sweetalert.html" type="text/javascript"></script>
+      <style>
+      .vis1 { VISIBILITY: visible }
+      .vis2 { VISIBILITY: hidden }
+      </style>    
+    <script language="JavaScript">
+    var bSelected=false;
+    function ChSel()
+    {
+        var theForm = document.forms['aspnetForm'];
+        if (!theForm) theForm = document.aspnetForm;
+        bSelected = !bSelected; 
+        var i;
+        for (i=0;i<theForm.chDelete.length;++i) theForm.chDelete[i].checked=bSelected;
+    } 
+    function OnKeyDown()
+    {
+        e = window.event;
+        if (e.keyCode == 13)
+        {
+            e.cancel = true;
+            var theForm = document.forms['aspnetForm'];
+            if (!theForm) theForm = document.aspnetForm;                
+            theForm.btnSearch.click();              
+        }
+    }
+    
+        function ShowHideControls()
+        {                   
+        
+            var theForm = document.forms['aspnetForm'];
+            if (!theForm) theForm = document.aspnetForm;                
+        
+          for (i=0;i<theForm.elements.length; ++i)
+          {
+          sName = theForm.elements[i].name;
+          
+          if (sName.indexOf("ddlOperation_") > 0)
+            {                        
+            s = "ctl00_ContentPlaceHolder1_fldEdit2" + sName.substring(39, sName.length);
+            if (document.getElementById(s) == null) s = "ctl00_ContentPlaceHolder1_fld2M" + sName.substring(13, sName.length)
+            if (document.getElementById(s) == null) s = "fldEdit2" + sName.substring(39, sName.length);
+            if (document.getElementById(s) == null) continue;
+            document.getElementById(s).className =              
+            theForm.elements[i].options.length > 1 &&
+                (theForm.elements[i].options.length - 2 == 
+                  theForm.elements[i].selectedIndex) ? 'vis1' : 'vis2'; 
+            if (document.getElementById(s+"_Cal") != null) 
+        document.getElementById(s+"_Cal").className =document.getElementById(s).className;          
+            }
+          }
+        return false;
+        }
+
+        function resetValues()
+        {
+        e = document.forms[0].elements; 
+        for (i=0;i<e.length;i++) 
+        { 
+        if (e[i].name!='SearchOption' && e[i].className!='button' && e[i].type!='hidden')        
+          e[i].value = ''; 
+        } 
+        ShowHideControls();
+
+        }
+    
+    </script> 	
+</head>
+<body>
+    <form name="aspnetForm" method="post" action="./RegisteredCourses.aspx?session=A8F38ABE2AA6490C8A02287425F54D28&amp;semester=E0258D92816B4E9084FB1AEFA2D9E981" id="aspnetForm">
+<div>
+<input name="ctl00_ContentPlaceHolder1_RadScriptManager1_TSM" id="ctl00_ContentPlaceHolder1_RadScriptManager1_TSM" value=";;System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35:en-US:f7ba41a4-e843-4f12-b442-8e407f37c316:ea597d4b:b25378d2" type="hidden">
+<input name="__EVENTTARGET" id="__EVENTTARGET" value="" type="hidden">
+<input name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" type="hidden">
+<input name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKLTk5NDA4MTE5MA9kFgJmD2QWAgIDD2QWAmYPZBYWAgEPDxYCHgRUZXh0BRpPQlVNLUVORUgsIEtFTEVDSEkgQkVOSVRBLmRkAgMPDxYCHghJbWFnZVVybAWGHGRhdGE6aW1hZ2UvcG5nO2Jhc2U2NCwvOWovNEFBUVNrWkpSZ0FCQVFFQVlBQmdBQUQvMndCREFBZ0dCZ2NHQlFnSEJ3Y0pDUWdLREJRTkRBc0xEQmtTRXc4VUhSb2ZIaDBhSEJ3Z0pDNG5JQ0lzSXh3Y0tEY3BMREF4TkRRMEh5YzVQVGd5UEM0ek5ETC8yd0JEQVFrSkNRd0xEQmdORFJneUlSd2hNakl5TWpJeU1qSXlNakl5TWpJeU1qSXlNakl5TWpJeU1qSXlNakl5TWpJeU1qSXlNakl5TWpJeU1qSXlNakl5TWpML3dBQVJDQUI0QUhnREFTSUFBaEVCQXhFQi84UUFId0FBQVFVQkFRRUJBUUVBQUFBQUFBQUFBQUVDQXdRRkJnY0lDUW9MLzhRQXRSQUFBZ0VEQXdJRUF3VUZCQVFBQUFGOUFRSURBQVFSQlJJaE1VRUdFMUZoQnlKeEZES0JrYUVJSTBLeHdSVlMwZkFrTTJKeWdna0tGaGNZR1JvbEppY29LU28wTlRZM09EazZRMFJGUmtkSVNVcFRWRlZXVjFoWldtTmtaV1puYUdscWMzUjFkbmQ0ZVhxRGhJV0doNGlKaXBLVGxKV1dsNWlabXFLanBLV21wNmlwcXJLenRMVzJ0N2k1dXNMRHhNWEd4OGpKeXRMVDFOWFcxOWpaMnVIaTQrVGw1dWZvNmVyeDh2UDA5ZmIzK1BuNi84UUFId0VBQXdFQkFRRUJBUUVCQVFBQUFBQUFBQUVDQXdRRkJnY0lDUW9MLzhRQXRSRUFBZ0VDQkFRREJBY0ZCQVFBQVFKM0FBRUNBeEVFQlNFeEJoSkJVUWRoY1JNaU1vRUlGRUtSb2JIQkNTTXpVdkFWWW5MUkNoWWtOT0VsOFJjWUdSb21KeWdwS2pVMk56ZzVPa05FUlVaSFNFbEtVMVJWVmxkWVdWcGpaR1ZtWjJocGFuTjBkWFozZUhsNmdvT0VoWWFIaUltS2twT1VsWmFYbUptYW9xT2twYWFucUttcXNyTzB0YmEzdUxtNndzUEV4Y2JIeU1uSzB0UFUxZGJYMk5uYTR1UGs1ZWJuNk9ucTh2UDA5ZmIzK1BuNi85b0FEQU1CQUFJUkF4RUFQd0QwVno3VkJna25OT2JPUWUxSm5pdktQU0drbmlrNlVNUU1acHJNdTNjVGlnb2NTTzlSczZyMVBTdWQxcnhORFpxMGNKM3lEMzZWeGQ3cjk5ZG5MenNxOWdwd0sxaFJsSXluVmpIUTlPazFPMGorL09pajNOVlcxN1R1bjJxUG4zcnlhU2FSZ1N6c2MrcHF1WFk5elc2d3ZtWXZFK1I3QkZxVnJNK1k3aEdIc2F0aVZTT0d6WGlhWEVzWitSbUgwTmErbitKYjIwWmN1WFVkUTFUTEN0YkZSeEtlNTZ0dVByVENmM25GWVdtZUlyVFVBQnYyU2QxYXRwRzNjNXlLNXBSYTBac3BKNm9zS1R5VFFjNXlLYXB6eG1uaWtNVmMwVTdQSFNpbllSZFlFQ29pY2RxdE9PYWhaS1JTSUdJSXlhNVB4VHJUV3FmWm9UaDJISnJxcmhsaWdkejBDa212S2Rhdm11NzJTUTlDZVBwV3RHSE5MVXpxejVZbVpOSXpzU1NTU2U5UXQwR09UNjA0RXR6elVzY1RGQ3lnRWo3b1BldlF1a2ppU2NtUnh3dHR5Um42MDc3TVNPTWo4SzFZcmZLakk1cXlMTWJlbFl1c2RLdzEwYzQ5cVFPcHpVWGtFR3Vpa3RCNlZSbHRzR3FqVnVUTEQyS01aZUYxa1FrTXB5SzczdzNxNXZiYmJJdzh4ZW9yaW1qd0t2OEFoMlR5ZFZWZjc0eFUxVnpSdVRUdkNWajBsSCtYNjFJRG5wVldQT09lbFR4dUNNalA1VnhIV1dlcEZGQ1pGRkFqV2NaWVl6VUxDckJ4MS9sVWJZSXFDa2M3NGxuTUdrU0JUeS95MTVYY1paem12VzllMDJTL3NsamlLN3QyY0d2TXJ5eGVKMkJIS3NRUjZWMTRlU1JoWGkzc1pxKzFhOE1ubTJjVUJWUWlNV0JDODVPT3A3OUtwUTJ4VmlIVG4zcTlFOGczQ0tIY3lqSkdmNVZ0T1Y5RVRSamJXUmNpUmVBR0ZYQW8yNE5ZOFAybTZEeUpGc1ZEams0ejlNMWF0cFpDMnc5UlhOT0xSMlFtcGJGcVZBRjVJcWhLcVlPT2FKSGxtbTJLUjF4eWNDcXBhNWp2UHMrMWM1NVluSXg2NXgwcW9SYkpxVGl0R1FTNHlSZ2lyV2d4aDlTM24rR3E3c3psZ1ZHUnh3Y2l0and0YU90NUlaRTQyOSsxYVNkb3M1clhub2RsQ0FFRlRxQm5OTWpYakdLbmpVZHhYSWRBbzY4VVUvYngxb29FYXVkb3htb3llYURMa0RJd2U5Um1vS1FOelhDK0piTTJ1cEdWY2JaL21Ic2U5ZHdUWE0rTG9ra3NBNVAzVy9uVndmdkJMYTV4MGlsWmNubk5XRWpqY1pZVlZtc3BJSWJhNjNGa2xUMTZWUEMrRnJlVzJoTktTdnFTbjkzR2ZMWGI2dDNxS0FIT1ZCSnF3OHl2Q1V4NzFBc3JBNDh3ajZZeFdlck9oV1d4RklDa21jRUhQV25QSHVPWFVmV2g1U1NWTEU1OVR4VG11TW9CanBUMTZDZHVwVmRGSEFGZFQ0WWhiN05KSzJjczJCbjBGWVdud0c3MUdORkhBT1Q5SzdoWXRxRGFCa1U1T3lzWTlib21HUU9CelVzVEZzNUFHRGdET2VQZmpyVEU1SE5TS0FEOVJXUU1rSjlxS1FqSXhSUUl2dmlvaWFsazQ3MVhZOEhKQXFDME5QSXFscWRrbDlZeVFrRGNSd2ZRMUxKZlJMOHFrdTNvdk5RTzk1SU1pRm9vei9FUjErbExtU0hhNXdwc3IyMWxlemFCcElXUFRIM1Q2aXFKRXR2SVlwT285NjFOYm51SHU1SXZNWUlweGdIcjlheUFwQnlSWFhCdHE3T2VTNVhaRW5tTitIdFUwZTFpY3pCZnFLcmxlNm44S054WCtITlZic2FSYjZrc3V3SEFsRC9RVlhac0hKT0JUc3NlMktobFU0NHFrVE45anQ5R3NvYldBRkdEdXd5elZzcjFyelhUcjJleW1WbFp0aFB6TG11N2dlNllBeGhaZ1JuR2NHdWFxdVY2bDAvZVdobzhnOEdwY2toU1JnMVFTOEN0aVZXamJ1R0g5YXRMTHUyRlFwR2VTVzdlM0hQNlZDMUcxYmNzaWltYi9TaW1TV3BCUEtBWTFDS2VoYnFmb0tTSFRvcFd6Y1NNK094WUFmenJaaGhWa0Q0RzA5MjRIK0pwMGtZaWRXRGJjK3BDL2tNR3JVVllqbmQ3RUVOcGJ4REVhcU9PemMvK09qK3RRWDBZMnJ3QmcvM2NIOVNUVjVpeC92TVBxeEg2QUNvYm5EVzdEZ0VjNEcwRDhoazBwcGNySEZ2bXV6eS9Xb2d1cHpxM0IzWnJMS0lUaml1bzhSVzZOZUxJVis4bzVyQWEyVE5LbkwzVWRMamNxR0VkalNlUStPbFd2c3lnY1ZINWN2UUU0clM0dVVnTVJISk5NTWFnWkxDcmYyY3NQbXBQc3FEclJ6QzVDajhnTmQvcE9UQmJNaElKakhUNlZ4NGhUT0ZXdTYwdU5WYUZTRGdJTURIdDlEV05WNm8wakd5WnJtM0YxQ0ZrUTdoM1lFNS84ZHFoL1o4U3NSNWZsc1A3cDIvb1QvU3RpMlVDUWpDODlnQi85ai9LcFpvam41VlA0QWorVFZxa2psYjFNRm9wSXVSOHkrNC9yakZGYXh0Z1R5aCt1MC96S24rZEZPeUZxVFdWeDVVdmxzY0EvZGJHNGoyRlh5MkNSdUs5OEdYQi9IM3JFWitRd0pCNjVIYXRHM3VDeXFWemtjRUlCeCtKN211YWhVdjdyTHEwK3FKMlRmOEFNeTVIcVJuOVdQOEFTb2JpWGJic2drNjhZRHIvQUNBcVNXNGlqVGRKalBUZ2IyL004VmszZHcwdWNFaGV5bkZhVmFpaXJFMDRPVEtGN1p3WHFGSDZqZ01Pb3JsNy9TNXJRNUkzSjJaZWxkWEd6QTRiRkt5NUI5TzROY1VhcmlkbktjRVZJTkhOZFhjYVRhekhQbGxUNm9jZnBWSTZERm4vQUZrbjVDdDFpSXZjZktZQlVtck50cHM5eWNxdUYvdkhwVzVIcGx0Q1I4aFp2OXM1clFqakNnWlAwRlRMRXJhSTFEdVVySFNvTFVodHUrVDFJNmZTdFNHTmR5c1FNQTgwQWZMMHBWYmEyMXVoNisxYy9PMjdzZHRMRzNHaGlJUFJUK1g2NUZUN1ZKL2hQL2Z1cWRyT0NGUWpFaTlOcWtaSDFIK0ZXNUxueTRtWXVRUU9tL245VnIwb1RUamM0SlJhZGl0ZVR4MjBmeVk4eHVuQUg0NVdpc2lSbm1jdTVKejFQclJYSk92cWRNYU9tbzZYZXB3RDlNOTZXSzcyN3RwR2NZSWJ0UlJXRVcxTFExc210U3ZjYXNyT0ZaaHV4d282TFRyWnpMRnVKeWM5YUtLcVRiZW9KSkxRbEtqSFNreUFhS0t6a0Exc2RpS2pZRTl3QlJSVWxJYU1M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" type="hidden">
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['aspnetForm'];
+if (!theForm) {
+    theForm = document.aspnetForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="RegisteredCourses_data/WebResource.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+<!--
+var ig_pi_imageUrl='/WebResource.axd?d=lXZOXT_UqPE5LwKjjmFKf4jF6XzDC-LHE3Z3vDRAQzA7cxrrU6z7pvqctNNweyMGuPRZk1K11nyPQtL28QRSIF1E_CZc7sV7kCGXwrQZGLUcsRDMaqA2gx7KV8e7j_boMlTWdqr0c7GAyULp3NQyVZnEu-AIyx8h8RdrUyE5AOIjVI54OCopy65MdigcylPV0&t=635194267274908089';try{(new Image()).src=ig_pi_imageUrl;}catch(ex){}
+// -->
+</script>
+<script src="RegisteredCourses_data/WebResource_005.js" type="text/javascript"></script>
+<script src="RegisteredCourses_data/WebResource_002.js" type="text/javascript"></script>
+<script src="RegisteredCourses_data/WebResource_004.js" type="text/javascript"></script>
+<script src="RegisteredCourses_data/WebResource_006.js" type="text/javascript"></script>
+<script src="RegisteredCourses_data/WebResource_003.js" type="text/javascript"></script>
+<style type="text/css">
+	 .ig_77127745_0{font-family:Verdana;font-size:8pt;border-style:None;border-width:1px;width:737px;height:340px;}
+	 TBODY.ig_77127745_1 TR TD, THEAD.ig_77127745_1 TR TH, TFOOT.ig_77127745_1 TR TH, TBODY.ig_77127745_1 TR TH{font-family:Verdana;font-size:8pt;background-color:window;border-color:Black;border-style:Solid;border-width:1px;padding-left:3px;border-left-color:window;border-top-color:window;overflow:hidden;}
+	 .ig_77127745_9{border-style:None;border-width:0px;}
+	 THEAD.ig_77127745_2 TR TH, TFOOT.ig_77127745_2 TR TH, TBODY.ig_77127745_2 TR TH{font-family:Arial;font-size:X-Small;font-weight:bold;background-color:#3393AE;color:#EDF0E8;border-style:Solid;border-left-color:#D7DFC1;border-top-color:#D7DFC1;border-left-width:1px;border-top-width:1px;background-image:url(/ig_common/images/Office2003OliveBG.png);background-repeat:repeat-x;}
+	 TFOOT.ig_77127745_3 TR TH{background-color:LightGrey;border-style:Solid;border-width:1px;border-left-color:White;border-top-color:White;border-left-width:1px;border-top-width:1px;}
+	 TBODY.ig_77127745_2 TR TH.ig_77127745_4, TFOOT.ig_77127745_2 TR TH.ig_77127745_4{background-color:#3393AE;border-width:0px;width:22px;padding:0px 0px 0px 0px; text-align:center; vertical-align:middle;}
+	 .ig_77127745_5{font-family:Verdana,Arial,Helvetica,sans-serif;font-size:11px;background-color:White;border-color:Silver;border-style:Solid;border-width:1px;width:200px;padding-left:2px;overflow:auto;}
+	 .ig_77127745_6{font-family:Verdana,Arial,Helvetica,sans-serif;font-size:11px;background-color:White;border-color:Silver;border-style:Solid;border-width:1px;padding-left:2px;overflow:auto;}
+	 .ig_77127745_7{background-color:#151C55;color:White;}
+	 TBODY.ig_77127745_1 TR.ig_77127745_8 TD, TBODY.ig_77127745_1 TR TD.ig_77127745_8, THEAD.ig_77127745_1 TR TH.ig_77127745_8, .ig_77127745_8{background-color:#F09D21;color:White;background-image:url(/ig_common/images/Office2003SelRow.png);background-repeat:repeat-x;}
+	 TBODY.ig_77127745_1 TR TD.ig_77127745_11, .ig_77127745_11{border-top-color:Black;border-bottom-color:Black;border-top-width:1px;border-bottom-width:1px;border-top-style:Solid;border-bottom-style:Solid;}
+	 TBODY.ig_77127745_1 TR TD.ig_77127745_12, .ig_77127745_12{border-left-color:Black;border-left-width:0px;border-left-style:Solid;}
+	 TBODY.ig_77127745_1 TR TD.ig_77127745_13, .ig_77127745_13{border-right-color:Black;border-right-width:0px;border-right-style:Solid;}
+	 TBODY.ig_77127745_1 TR TD.ig_77127745_10, THEAD.ig_77127745_1 TR TH.ig_77127745_10, TFOOT.ig_77127745_1 TR TH.ig_77127745_10, .ig_77127745_10{background-color:Transparent;border-width:0px;margin:0px 0px 0px 0px;padding:0px 0px 0px 0px; text-align:left; vertical-align:top;}
+</style>
+
+<script src="RegisteredCourses_data/Telerik.js" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+if (typeof(Sys) === 'undefined') throw new Error('ASP.NET Ajax client-side framework failed to load.');
+//]]>
+</script>
+
+<div>
+
+	<input name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="93DC6342" type="hidden">
+</div>
+    <div>
+        
+    <style>
+    .fontBoldBlk{
+        font-weight: bold;
+        color: #87a3ab
+    }
+</style>
+<table style="width: 766px;border: #6bbcb6 solid 1px;border-radius: 10px;" align="center" border="0" cellpadding="0" cellspacing="2">
+	<tbody><tr>
+		<td colspan="2" height="2">
+            &nbsp;</td>
+	</tr>
+    <tr>
+        <td colspan="2" align="center">
+            <img src="RegisteredCourses_data/logo.png" style="height: 80px" width="500"></td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">&nbsp;
+        </td>
+    </tr>
+	<tr>
+	 <td colspan="2" align="center"> &nbsp; </td>
+	</tr>
+  <tr>
+    <td colspan="2" height="21"><table border="0" width="100%">
+        <tbody><tr>
+          <td style="height: 18px" width="3%">&nbsp;◊</td>
+          <td class="fontBoldBlk" style="height: 18px" width="14%">Full Name:</td>
+          <td style="height: 18px; width: 713px;">
+              <span id="ctl00_ContentPlaceHolder1_lblFullName">OBUM-ENEH, KELECHI BENITA.</span></td>
+          <td style="width: 218px;" rowspan="6">
+              <img id="ctl00_ContentPlaceHolder1_imgPassport" src="data:image/png;base64,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" style="height:140px;width:140px;border-width:0px;border-radius: 20px"></td>
+        </tr>
+        <tr>
+            <td>
+                &nbsp;◊</td>
+            <td class="fontBoldBlk">
+                Matric. Number:</td>
+            <td style="width: 713px">
+                <span id="ctl00_ContentPlaceHolder1_lblMatricNo">2018/MS/8216</span></td>
+        </tr>
+        <tr>
+          <td>&nbsp;◊</td>
+          <td class="fontBoldBlk">Faculty:</td>
+          <td style="width: 713px"><span id="ctl00_ContentPlaceHolder1_lblFaculty">MANAGEMENT</span></td>
+        </tr>
+        <tr>
+          <td style="height: 23px">&nbsp;◊</td>
+          <td class="fontBoldBlk" style="height: 23px">Department:</td>
+          <td style="height: 23px; width: 713px;"><span id="ctl00_ContentPlaceHolder1_lblDept">ACCOUNTANCY/BANKING &amp; FINANCE</span></td>
+        </tr>
+        <tr>
+          <td>&nbsp;◊</td>
+          <td class="fontBoldBlk">
+              Student Type:</td>
+          <td style="width: 713px"><span id="ctl00_ContentPlaceHolder1_lblStudenttype">REGULAR</span></td>
+        </tr>
+
+        <tr>
+          <td>&nbsp;◊</td>
+          <td class="fontBoldBlk">Level:</td>
+          <td style="width: 713px"><span id="ctl00_ContentPlaceHolder1_lblLevel">300 LEVEL</span></td>
+
+        </tr>
+        <tr>
+            <td>
+                &nbsp;◊</td>
+            <td class="fontBoldBlk">
+                Session</td>
+            <td style="width: 713px">
+                <span id="ctl00_ContentPlaceHolder1_lblSession">2020-2021</span></td>
+            <td rowspan="1" style="width: 218px">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                &nbsp;◊</td>
+            <td class="fontBoldBlk">
+                Semester</td>
+            <td style="width: 713px">
+                <span id="ctl00_ContentPlaceHolder1_lblSemester">FIRST SEMESTER</span></td>
+            <td rowspan="1" style="width: 218px">
+            </td>
+        </tr>
+      </tbody></table><hr size="1">
+        &nbsp;&nbsp;
+       </td>
+        
+  </tr>
+    <tr>
+        <td colspan="2" height="21" align="center">
+            <strong>REGISTERED COURSES</strong></td>
+    </tr>
+    <tr>
+        <td colspan="2" height="21" align="center">
+                        <input id="ctl00_ContentPlaceHolder1_uwgCourses" name="ctl00xContentPlaceHolder1xuwgCourses" value="" type="hidden"><table id="ctl00xContentPlaceHolder1xuwgCourses_main" style="overflow:hidden;table-layout:fixed;position:relative;width:737px;height:340px;" class="ig_77127745_0" onresize="igtbl_onResize('ctl00xContentPlaceHolder1xuwgCourses');" onmousemove="igtbl_tableMouseMove(event,'ctl00xContentPlaceHolder1xuwgCourses');" onmouseup="igtbl_tableMouseUp(event,'ctl00xContentPlaceHolder1xuwgCourses');" border="0" cellpadding="0" cellspacing="0"><tbody id="ctl00xContentPlaceHolder1xuwgCourses_mtb" style="height:340px"><tr id="ctl00xContentPlaceHolder1xuwgCourses_mr" style="height:340px;"><td id="ctl00xContentPlaceHolder1xuwgCourses_mc" style="height:340px;width:737px;vertical-align:top;" align="left"><div id="ctl00xContentPlaceHolder1xuwgCourses_div" style="position:relative;overflow:auto;width:100%;height:100%;" onscroll='igtbl_onScroll(event,"ctl00xContentPlaceHolder1xuwgCourses");' tabindexpage="0" hidefocus="true"><table id="G_ctl00xContentPlaceHolder1xuwgCourses" bandno="0" stationarymarginsoutlookgroupby="True" style="table-layout:fixed;width:600px;position:relative;" onselectstart='igtbl_selectStart(event,"ctl00xContentPlaceHolder1xuwgCourses");' onmousedown='igtbl_cellClickDown(event,"ctl00xContentPlaceHolder1xuwgCourses");' onmouseup='igtbl_cellClickUp(event,"ctl00xContentPlaceHolder1xuwgCourses");' oncontextmenu='igtbl_cellContextMenu(event,"ctl00xContentPlaceHolder1xuwgCourses");' onmousemove='igtbl_cellMouseMove(event,"ctl00xContentPlaceHolder1xuwgCourses");' onmouseover='igtbl_cellMouseOver(event,"ctl00xContentPlaceHolder1xuwgCourses");' onmouseout='igtbl_cellMouseOut(event,"ctl00xContentPlaceHolder1xuwgCourses");' ondblclick='igtbl_cellDblClick(event,"ctl00xContentPlaceHolder1xuwgCourses");' border="0" cellpadding="0" cellspacing="0"><colgroup><col width="70px"><col width="250px"><col width="65px"><col width="150px"><col width="65px"></colgroup><thead class="ig_77127745_1 ig_77127745_2" onmousedown='igtbl_headerClickDown(event,"ctl00xContentPlaceHolder1xuwgCourses");' onmouseup='igtbl_headerClickUp(event,"ctl00xContentPlaceHolder1xuwgCourses");' onmouseout='igtbl_headerMouseOut(event,"ctl00xContentPlaceHolder1xuwgCourses");' onmousemove='igtbl_headerMouseMove(event,"ctl00xContentPlaceHolder1xuwgCourses");' onmouseover='igtbl_headerMouseOver(event,"ctl00xContentPlaceHolder1xuwgCourses");' oncontextmenu='igtbl_headerContextMenu(event,"ctl00xContentPlaceHolder1xuwgCourses");'><tr><th id="ctl00xContentPlaceHolder1xuwgCourses_c_0_0" columnno="0" height="21px"><nobr>Course Code</nobr></th><th id="ctl00xContentPlaceHolder1xuwgCourses_c_0_1" columnno="1" height="21px"><nobr>Course Title</nobr></th><th id="ctl00xContentPlaceHolder1xuwgCourses_c_0_2" columnno="2" height="21px"><nobr>Course Unit</nobr></th><th id="ctl00xContentPlaceHolder1xuwgCourses_c_0_3" columnno="3" height="21px"><nobr>Course Type</nobr></th><th id="ctl00xContentPlaceHolder1xuwgCourses_c_0_4" columnno="4" height="21px"><nobr>Approved</nobr></th></tr></thead><tbody style="height:100%" class="ig_77127745_1 ig_77127745_2"><tr id="ctl00xContentPlaceHolder1xuwgCourses_r_0" style="height:21px;"><td><nobr>FIN 311</nobr></td><td><nobr>CORPORATE/BUSINESS FINANCE I</nobr></td><td><nobr>2</nobr></td><td><nobr>CORE COURSES</nobr></td><td><nobr>False</nobr></td></tr><tr id="ctl00xContentPlaceHolder1xuwgCourses_r_1" style="height:21px;"><td><nobr>LEP 301</nobr></td><td><nobr>LANGUAGE ENHANCEMENT PROGRAMME</nobr></td><td><nobr>0</nobr></td><td><nobr>REQUIRED AUXILLARY</nobr></td><td><nobr>False</nobr></td></tr><tr id="ctl00xContentPlaceHolder1xuwgCourses_r_2" style="height:21px;"><td><nobr>FIN 323</nobr></td><td><nobr>BANKING LAWS AND REGULATIONS</nobr></td><td><nobr>2</nobr></td><td><nobr>CORE COURSES</nobr></td><td><nobr>False</nobr></td></tr><tr id="ctl00xContentPlaceHolder1xuwgCourses_r_3" style="height:21px;"><td id="ctl00xContentPlaceHolder1xuwgCourses_rc_3_0"><nobr>FIN 305</nobr></td><td id="ctl00xContentPlaceHolder1xuwgCourses_rc_3_1"><nobr>PUBLIC FINANCE I</nobr></td><td id="ctl00xContentPlaceHolder1xuwgCourses_rc_3_2"><nobr>2</nobr></td><td id="ctl00xContentPlaceHolder1xuwgCourses_rc_3_3"><nobr>CORE COURSES</nobr></td><td id="ctl00xContentPlaceHolder1xuwgCourses_rc_3_4"><nobr>False</nobr></td></tr><tr id="ctl00xContentPlaceHolder1xuwgCourses_r_4" style="height:21px;"><td><nobr>ECO 309</nobr></td><td><nobr>MONETARY ECONOMICS</nobr></td><td><nobr>2</nobr></td><td><nobr>CORE COURSES</nobr></td><td><nobr>False</nobr></td></tr><tr id="ctl00xContentPlaceHolder1xuwgCourses_r_5" style="height:21px;"><td><nobr>FIN 313</nobr></td><td><nobr>PRINCIPLES OF PRACTICES IN INSURANCE</nobr></td><td><nobr>2</nobr></td><td><nobr>CORE COURSES</nobr></td><td><nobr>False</nobr></td></tr><tr id="ctl00xContentPlaceHolder1xuwgCourses_r_6" style="height:21px;"><td><nobr>MKT 203</nobr></td><td><nobr>ELEMENTS OF MARKETING 1</nobr></td><td><nobr>2</nobr></td><td><nobr>REQUIRED AUXILLARY</nobr></td><td><nobr>False</nobr></td></tr><tr id="ctl00xContentPlaceHolder1xuwgCourses_r_7" style="height:21px;"><td><nobr>ECO 305</nobr></td><td><nobr>INTRODUCTION TO ECONOMETRIC I</nobr></td><td><nobr>2</nobr></td><td><nobr>CORE COURSES</nobr></td><td><nobr>False</nobr></td></tr><tr id="ctl00xContentPlaceHolder1xuwgCourses_r_8" style="height:21px;"><td id="ctl00xContentPlaceHolder1xuwgCourses_rc_8_0"><nobr>FIN 301</nobr></td><td id="ctl00xContentPlaceHolder1xuwgCourses_rc_8_1"><nobr>FINANCIAL MANAGEMNT</nobr></td><td id="ctl00xContentPlaceHolder1xuwgCourses_rc_8_2"><nobr>2</nobr></td><td id="ctl00xContentPlaceHolder1xuwgCourses_rc_8_3"><nobr>CORE COURSES</nobr></td><td id="ctl00xContentPlaceHolder1xuwgCourses_rc_8_4"><nobr>False</nobr></td></tr><tr id="ctl00xContentPlaceHolder1xuwgCourses_r_9" style="height:21px;"><td id="ctl00xContentPlaceHolder1xuwgCourses_rc_9_0"><nobr>ACC 371</nobr></td><td id="ctl00xContentPlaceHolder1xuwgCourses_rc_9_1"><nobr>QUANTITATIVE TECHNIQUES I</nobr></td><td id="ctl00xContentPlaceHolder1xuwgCourses_rc_9_2"><nobr>2</nobr></td><td id="ctl00xContentPlaceHolder1xuwgCourses_rc_9_3"><nobr>CORE COURSES</nobr></td><td id="ctl00xContentPlaceHolder1xuwgCourses_rc_9_4"><nobr title="">False</nobr></td></tr><tr id="ctl00xContentPlaceHolder1xuwgCourses_r_10" style="height:21px;"><td id="ctl00xContentPlaceHolder1xuwgCourses_rc_10_0"><nobr>FIN 303</nobr></td><td id="ctl00xContentPlaceHolder1xuwgCourses_rc_10_1"><nobr>MONEY AND BANKING I</nobr></td><td id="ctl00xContentPlaceHolder1xuwgCourses_rc_10_2"><nobr>2</nobr></td><td id="ctl00xContentPlaceHolder1xuwgCourses_rc_10_3"><nobr title="">CORE COURSES</nobr></td><td id="ctl00xContentPlaceHolder1xuwgCourses_rc_10_4"><nobr>False</nobr></td></tr><tr id="ctl00xContentPlaceHolder1xuwgCourses_r_11" style="height:21px;"><td id="ctl00xContentPlaceHolder1xuwgCourses_rc_11_0"><nobr>ENT 301</nobr></td><td id="ctl00xContentPlaceHolder1xuwgCourses_rc_11_1"><nobr>INTRODUCTION TO ENTREPRENEURSHIP STUDIES</nobr></td><td id="ctl00xContentPlaceHolder1xuwgCourses_rc_11_2"><nobr>2</nobr></td><td id="ctl00xContentPlaceHolder1xuwgCourses_rc_11_3"><nobr title="">CORE COURSES</nobr></td><td id="ctl00xContentPlaceHolder1xuwgCourses_rc_11_4"><nobr>False</nobr></td></tr><tr id="ctl00xContentPlaceHolder1xuwgCourses_r_12" style="height:21px;"><td id="ctl00xContentPlaceHolder1xuwgCourses_rc_12_0"><nobr>FIN 325</nobr></td><td id="ctl00xContentPlaceHolder1xuwgCourses_rc_12_1"><nobr>NIGERIAN MONEY MARKET</nobr></td><td id="ctl00xContentPlaceHolder1xuwgCourses_rc_12_2"><nobr>2</nobr></td><td id="ctl00xContentPlaceHolder1xuwgCourses_rc_12_3"><nobr>CORE COURSES</nobr></td><td id="ctl00xContentPlaceHolder1xuwgCourses_rc_12_4"><nobr>False</nobr></td></tr><tr id="ctl00xContentPlaceHolder1xuwgCourses_r_13" style="height:21px;"><td id="ctl00xContentPlaceHolder1xuwgCourses_rc_13_0"><nobr>&nbsp;</nobr></td><td id="ctl00xContentPlaceHolder1xuwgCourses_rc_13_1"><nobr>Total Unit :</nobr></td><td id="ctl00xContentPlaceHolder1xuwgCourses_rc_13_2"><nobr>24</nobr></td><td id="ctl00xContentPlaceHolder1xuwgCourses_rc_13_3"><nobr>&nbsp;</nobr></td><td id="ctl00xContentPlaceHolder1xuwgCourses_rc_13_4"><nobr>&nbsp;</nobr></td></tr></tbody></table></div></td></tr></tbody></table><div id="ctl00xContentPlaceHolder1xuwgCourses_rowtempl_0" style="z-index:10000;overflow:hidden;position:absolute;display:none;font-family:Verdana;font-size:8pt;background-color:White;border-color:White;border-style:Ridge;border-width:1px;border-left-color:window;border-top-color:window;border-left-width:3px;border-top-width:3px;border-right-width:3px;border-bottom-width:3px; padding-left:3px;overflow:hidden;">
+                                        <p align="right">
+                                            &nbsp;<input id="igtbl_TextBox_0_0" columnkey="" style="width: 150px" type="text"><br>
+                                        </p>
+                                        <br>
+                                        <p align="center">
+                                            <input id="igtbl_reOkBtn" onclick="igtbl_gRowEditButtonClick(event);" style="width: 50px" value="OK" type="button">&nbsp;
+                                            <input id="igtbl_reCancelBtn" onclick="igtbl_gRowEditButtonClick(event);" style="width: 50px" value="Cancel" type="button"></p>
+                                    </div></td>
+    </tr>
+  <tr>
+    <td colspan="2" height="21"><hr size="1">
+    </td>
+  </tr>
+    <tr>
+        <td colspan="2" align="center">
+           
+            <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$ContentPlaceHolder1$RadScriptManager1', 'aspnetForm', [], [], [], 90, 'ctl00');
+//]]>
+</script>
+
+            <div style="width: 350px; height: 100px; margin: 0px auto">
+                <span id="ctl00_ContentPlaceHolder1_RadBarcode1" class="RadBarcode" style="display:inline-block;font-size:16px;height:90%;width:300px;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%"><rect x="0%" y="0%" width="1.176471%" height="90%" style="fill:rgb(0,0,0)"></rect><rect x="2.352941%" y="0%" width="2.352941%" height="90%" style="fill:rgb(0,0,0)"></rect><rect x="7.058824%" y="0%" width="1.176471%" height="90%" style="fill:rgb(0,0,0)"></rect><rect x="9.411765%" y="0%" width="1.176471%" height="90%" style="fill:rgb(0,0,0)"></rect><rect x="12.94118%" y="0%" width="1.176471%" height="90%" style="fill:rgb(0,0,0)"></rect><rect x="15.29412%" y="0%" width="2.352941%" height="90%" style="fill:rgb(0,0,0)"></rect><rect x="18.82353%" y="0%" width="1.176471%" height="90%" style="fill:rgb(0,0,0)"></rect><rect x="21.17647%" y="0%" width="1.176471%" height="90%" style="fill:rgb(0,0,0)"></rect><rect x="23.52941%" y="0%" width="2.352941%" height="90%" style="fill:rgb(0,0,0)"></rect><rect x="27.05882%" y="0%" width="2.352941%" height="90%" style="fill:rgb(0,0,0)"></rect><rect x="30.58824%" y="0%" width="1.176471%" height="90%" style="fill:rgb(0,0,0)"></rect><rect x="32.94118%" y="0%" width="2.352941%" height="90%" style="fill:rgb(0,0,0)"></rect><rect x="36.47059%" y="0%" width="2.352941%" height="90%" style="fill:rgb(0,0,0)"></rect><rect x="40%" y="0%" width="1.176471%" height="90%" style="fill:rgb(0,0,0)"></rect><rect x="43.52941%" y="0%" width="1.176471%" height="90%" style="fill:rgb(0,0,0)"></rect><rect x="45.88235%" y="0%" width="2.352941%" height="90%" style="fill:rgb(0,0,0)"></rect><rect x="49.41177%" y="0%" width="1.176471%" height="90%" style="fill:rgb(0,0,0)"></rect><rect x="52.94118%" y="0%" width="1.176471%" height="90%" style="fill:rgb(0,0,0)"></rect><rect x="55.29412%" y="0%" width="1.176471%" height="90%" style="fill:rgb(0,0,0)"></rect><rect x="58.82353%" y="0%" width="1.176471%" height="90%" style="fill:rgb(0,0,0)"></rect><rect x="61.17647%" y="0%" width="2.352941%" height="90%" style="fill:rgb(0,0,0)"></rect><rect x="64.70589%" y="0%" width="2.352941%" height="90%" style="fill:rgb(0,0,0)"></rect><rect x="68.2353%" y="0%" width="1.176471%" height="90%" style="fill:rgb(0,0,0)"></rect><rect x="70.58823%" y="0%" width="2.352941%" height="90%" style="fill:rgb(0,0,0)"></rect><rect x="74.11765%" y="0%" width="1.176471%" height="90%" style="fill:rgb(0,0,0)"></rect><rect x="77.64706%" y="0%" width="2.352941%" height="90%" style="fill:rgb(0,0,0)"></rect><rect x="81.17647%" y="0%" width="1.176471%" height="90%" style="fill:rgb(0,0,0)"></rect><rect x="83.52941%" y="0%" width="2.352941%" height="90%" style="fill:rgb(0,0,0)"></rect><rect x="87.05882%" y="0%" width="1.176471%" height="90%" style="fill:rgb(0,0,0)"></rect><rect x="89.41177%" y="0%" width="1.176471%" height="90%" style="fill:rgb(0,0,0)"></rect><rect x="91.76471%" y="0%" width="1.176471%" height="90%" style="fill:rgb(0,0,0)"></rect><rect x="94.11765%" y="0%" width="2.352941%" height="90%" style="fill:rgb(0,0,0)"></rect><rect x="98.82353%" y="0%" width="1.176471%" height="90%" style="fill:rgb(0,0,0)"></rect><text x="50%" y="100%" text-anchor="middle">2018/MS/82169</text></svg></span>
+            </div>
+
+        </td>
+    </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <span id="ctl00_ContentPlaceHolder1_lblError"></span></td>
+        </tr>
+  <tr>
+    <td colspan="2" align="right">
+    </td>
+  </tr>
+</tbody></table>
+
+    </div>
+        <script type="text/javascript" src="RegisteredCourses_data/sweetalert.js">
+        </script>
+    
+<script type="text/javascript">window.print();</script><script type="text/javascript"><!--
+	var octl00xContentPlaceHolder1xuwgCourses = igtbl_initGrid("ctl00xContentPlaceHolder1xuwgCourses",[false,0,2,1,2,2,"ig_77127745_1","",1,1,"ig_77127745_9",1,"ig_77127745_3","",0,"ig_77127745_2",1,22,"","ig_77127745_4","","ig_77127745_8","ig_77127745_8","ig_77127745_8",1,1,1,2,0,0,false,1,1,8,"/WebResource.axd?d=QMBi3dxuHbR_QbUGpqjcUSATl6dio-9oQ2Y98Rc2w1LvbQf9j4FVkmyAQRcyrhawgkJhhdf6mN_E1yBGtS-zUKXD61HPUGYrGwlF5Aj9S19mkUnzNqgT4CKVlXX5fQdDgiRV4IB-LL1y_V3UNmxHJZuTPprfm65vp9fT1oc4DJOD0DvkqZDNZ9w2iJQGtUkBg5x-ZmYYbkLAb4IxW2yxIw2&t=635194267634894084","/WebResource.axd?d=_Ivgriu18aeTNK7oTzEMq6Jt2VKOBbcLDgdJ5ygrhBRBZq3vSivVxYSG14izBNTARQPTJ39SzyHiiWhH8LSeCDEIFS6T-3HiNW4Mezg8SJskKy1L-CCu3FP4KVOKuQBRYDcK5FGqaGWbN5Q306cpR879RUi5ds_vc_a0jZcB2FV6UAbWktjEO1X0VVFY7Xk-JbuAogReNsmIyIsK8gE_Wg2&t=635194267634894084","/WebResource.axd?d=FNoA6IHpuYKZKCMdDRNyhuF0CiM2sTLKT2MtKMJiBkiYgrzpUb5ZR-ZlTLGDo2jvwdKFr-P4QUlR4ZdxhLrscluP2up1lo_9tpyS7EDO_jIehUwjN8_MRBmrMCFczAmIUj4CFvu7pZ5VEPDfDpCdxhl97sUkkuzex1E-yEu2uNQDer3lVnGDyvNAmEzoG2rIPME1CjktGVxWf8LYGSJGWQ2&t=635194267634894084","/WebResource.axd?d=VRedN8oNdKjRk-K6MQwR8mSHGrwvk8_9CY7qkxyTyNL_b1-zgjHqdTsxC_dEA_AE3q1xlb0YlKNFMs5SdeKQJUsdx9Ec5CI7VOWtmY-Ldl1Wk2FggVW9BJ2LLq3_C4bpHDCGcUC9N7bNO7fB5dgsooKJxSHbnBp7WEV-Q-tzYul-MV-EHyJrbAEr2isZxcpBulpZ80wl-pB8yFGbkQ_cHw2&t=635194267634894084","/WebResource.axd?d=zbbx07-xQlPiA0aJajaVEf2OsqsrleXGMY2EN4gUw2ka6iwpV0geQFB85r_pWnBvhWHVdj4gFWsX4NxNNbgmzT2DbAPGyLPAU5nAvyhgmxAlFbIUnvZGEt-qGFu569hDU55dTKh95SOcEHvdHahh88sYjVylJ2gvVuf9Ry3VWzniYLmfzmj5EccdkHaWUk2dOlIEF9kvFJDvFw9-Zlmi8Q2&t=635194267634894084","/WebResource.axd?d=JEMzOKxgi5zE0EMzv8DOOjk0FsHYb_C6_4fzM5kns7nGDRW4DG8iwynIARcmchexszQ0aiEQ2GNTsKYHx_el2CEjeofAb8HPKAfxfx01cnYX7iYnNKqj_A0EVJZvr5LcSQ677RYPc7g4pVNu_J-4Wpsgde818PjlEqJXLXm2TffjaoFq9qmXGILQGgc1Utb00MUOflUVKjfTjyey2dA0hw2&t=635194267634894084","/WebResource.axd?d=9q13Tvb2k54PY7MKT8uvclIyWNbNNA5mJYWLyldsgIlor0Af62dpYmjywSTwi5GpT2IzfOrwfiX-bX5X7Pm0perSRwNgILFptFx3wiim4g2j4j0GD4zGTeXaEI9tQ2hy3J37x4SgxsQV2pziy70L_rbsQ-g-2os7lQ-pAe84S7YSrCm6ugfnzobkgOCF41YgscoLsp5RdJjKdFGEHjRUYQ2&t=635194267634894084","/WebResource.axd?d=w-MB1zEv7vcoaoz-PGq-peF6a7fe1Habg_YdA6ywmCzynxwSB2utpTl337Ae0lYmW_Nj2fJkJFbl8aMNSF86OsLHIlW0yDKkFydtbEL7EnU-5GV71d6Y72ZxIhmj0xZQCEBSW1ri2QB86uffRTftsX9u9gkMurydVv4pujU5O0vl13dSdQm0rOsN1Lqpb3O9htc5vrvDg5SG0ySJPtJydw2&t=635194267634894084",[true,"#000000","","",["","","","","","","","","0px","","0px",""]],",|.",2,"ctl00$ContentPlaceHolder1$uwgCourses",0,0,"",false,0,"ctl00_ContentPlaceHolder1_uwgCourses",1900,false,1,"/WebResource.axd?d=R2E-_siVnQu9rNgTouPWCZuwKSurQdlZ-ekCtQGcwSPUnOChhZGMR9DmpZpDDipNvrT7AH7WfKb2tmDG3g1qEDHDmE4ALHeaX732zhqHXt_H-GNIh629PrYJ6d0hREmS2JnJ9OewdZ3ghqbpiwVxvrLBQKNWxp4I0dkArfFZ4ghZLKsEyK5hjgqBruF7BXWTVcN3i3L51MchIpYHMKdJIw2&t=635194267634894084","/WebResource.axd?d=i5Hh9brz2lMNvv-uqevH3-ANBuWC7lLxdebPzNP76pVbh27TM7Uo1LdhChQciJluGpfNpUQPRtO7oE5KAgdKRX46hNjr6p8N-HWQ_FHSnXFY6U_1pQHWfhzTGeBNccvUAXw8Et1U0Xz3quRPjVDc3HRoH7-SFNv36By2T-AV719_ak94wL7goD4ntGT16i7pdSrBhoSuF5AKgI2kSdYtcQ2&t=635194267634894084",0,1,1,0,0,0,"Row {0}, {1}: {2}","Child row {0}, {1}: {2}","ig_77127745_5","ig_77127745_7","/WebResource.axd?d=8lneXU7Yh0pVRvP58hggSPIT_kJWEYx01bBtyLvGr9C_h_VPpuawDYZ0oSmx-SBLE-KwmTrAqF9zhfcqS_pEU08jFYKFpuZk3U8lIDmI3hgSx_lgc2Ym1qTLWBdHXov0BGaFbczScxGxyzNwZD7vPBUu1PpWQOaYU7lNMTWGDIVGh4Pte8knQAyoDW0t4my7lpVf23nE-_LYaI1hjnwy_A2&t=635194267634894084","/WebResource.axd?d=unOATiJtGFoPDjy_71b0D_cEQTGkHvsfX8xhOjjrB0YBAJHzJlELiApc1rbNjHrWxyYiXx7Fy6J7fGLaVTm__snPciM2l7aH6TJ1sE2MMu1idhCequ0k8QlHlL9d4h9EFzQZuTnN2fiVS2nTWOnglLObzhACNN0gtVyXBZ21vvw2Etw8H7FiDC3TEHm_fX6zEyPgM6aOmbMzjhsDCOawXw2&t=635194267634894084","","/WebResource.axd?d=lXZOXT_UqPE5LwKjjmFKf4jF6XzDC-LHE3Z3vDRAQzA7cxrrU6z7pvqctNNweyMGuPRZk1K11nyPQtL28QRSIF1E_CZc7sV7kCGXwrQZGLUcsRDMaqA2gx7KV8e7j_boMlTWdqr0c7GAyULp3NQyVZnEu-AIyx8h8RdrUyE5AOIjVI54OCopy65MdigcylPV0&t=635194267274908089",true,2,0,"","","","","","","","","","/WebResource.axd?d=JEMzOKxgi5zE0EMzv8DOOjk0FsHYb_C6_4fzM5kns7nGDRW4DG8iwynIARcmchexszQ0aiEQ2GNTsKYHx_el2CEjeofAb8HPKAfxfx01cnYX7iYnNKqj_A0EVJZvr5LcSQ677RYPc7g4pVNu_J-4Wpsgde818PjlEqJXLXm2TffjaoFq9qmXGILQGgc1Utb00MUOflUVKjfTjyey2dA0hw2&t=635194267634894084","https://portal.funai.edu.ng/modules/CourseRegistration/RegisteredCourses.aspx?session=A8F38ABE2AA6490C8A02287425F54D28&semester=E0258D92816B4E9084FB1AEFA2D9E981","ig_77127745_11","ig_77127745_12","ig_77127745_13",[[3,"/WebResource.axd?d=L9qWOMP23p86V668TsjkgfMyFB1hxqvi4iEYtfyqu1ddktFzutHMWGG13ZOv52fcK8Jw9ExsT0vcHKEUe7wuxG5hd0Edt0mXYmFqjZH51Pz3mEn1Y8pr1tGbkcpvEeORWJsuxks4N3lmBz7xFq7bMZFWV20MfgnNHHEN73jX3pQ9fIQzqsLSom94aftlueEsfh2V1_SRZWKfcV_T5OSttw2&t=635194267634894084","Filter Equals","Equals"],[4,"/WebResource.axd?d=ddom4e5-zPrKf9wOQZNePmtr7Pxnoza89b7yeB6Wxabp3kOu6BBjmlr5P31_kXGwah4t63RWsU3XsOP3jL7Qiydw0birfOEpTjW5B_FuJYqlFbBSsl1QVho7xRP29RBJayVWFHB7By-v39EW3dhe2ODsUeh5b1c9QD2mlxlR92bu8l8zdfpStJFbKmY3EemhsgU7l-K1p45uXRWA79GVHA2&t=635194267634894084","Not Equal","Not Equals"],[5,"/WebResource.axd?d=dAi0GFjTAPHCJvh01As0psDVYEB4uqjW_ujLXcUmsDXB_IDRbP6QLkh0V66LDt69weMlM13aa8uNCWRhll242bsP74m3IayD2zfXKOFei1IoOtKqePLtdbJzMl5qli_FH5Lrg-VKS01rC-PUsFPKXDNquqzyF-vsMsI1POfM5I-iNomgcq_mdhtb0v3ILYvircxE_WmUyDuvjKGtOSZOQg2&t=635194267634894084","Like","Like"],[6,"/WebResource.axd?d=4z-oKzjymg125x0TlDl_EzZDJIcsxzZXdD3Cs3i3yTMQNv9yYU9NB2VMh4jxkCsCyJ2V2OTLg5rR8Ez2CfV06yujOpHJJG0QhqYSsPJhuUYHGa_gZ6_EeD5OWpiDH3xcIpZpXhECEg5yC5nn4NYNAIrqGR3286jdkXJxCHtHLRK9-piBCBzn2Z-n9DvgoIoFYmJOsSgklIGLgjdJFURDCg2&t=635194267634894084","Not Like","Not Like"],[7,"/WebResource.axd?d=VGr9rQram47Mff0qksI67leGmW3Dh-9ypKMKZpDyMq--6WhwrHdGmAmxZLJjSb_NrlwhO7FVH3zvKmvAWwfi6ZdkozsIWy6RNMtZpQSMtiDaN5QUgi0i4pa5W1ViqMuNLCoJ4yV2bZAm26OOwcwLkPlRa3N8Ygu7MtJ1XEnt87zrxuUTXLXLRgvWI67y9V4G7esSMri2jqMocjvFI3vHVg2&t=635194267634894084","Less Than","Less Than"],[8,"/WebResource.axd?d=UFHb-AjVS-Zd8fmLR7TnGvWdVGNPsLx8He6A4LOZk8J_llNkXEb6M8kS6nhDojUraMnynza11ZKUABe5LfSdBMQ-kddyzBblsPUxfHxHev0xas3r_5DzN40nidu2794oUZn1mnK3NekNsPP7mhIwqfruBRVaopRoDDe_pCJZWkNJI7bh3XN2w-J6A3zuzF72-hNfcscCzGuHD_SndhjhB82osmg6PG2ALzNlpCa4vKQ1&t=635194267634894084","Less Than Or Equals To","Less Than Or Equals"],[9,"/WebResource.axd?d=YhYdESFT-5RIVWgq-pIKLwudq3l6DEeNaxwBVpHFzWrIBCbzUUcgMTqlCXE5oVh7vE6Nrq9vXema9lmpXt5fma-XMaIyBDB07S2Sfc_zaG_dcDUX4ae9oEbGWyJLUlS2_d7RRomyBVSKFVhf7ulnMUfnxcroZTTCGLAT8MWC0e9fifF7M4V1WK88AYo8xvK94c3WO0EiBEAFd-fBeDey9w2&t=635194267634894084","Greater Than","Greater Than"],[10,"/WebResource.axd?d=WkZBSSFQT1fdc4iMl5GZ-H4YHRMldKI1DDjembEBqGXGIe_lCS2ds-vGmYTYzwYGZOx4aYSrFDeX_GoSJFYdfk39FL-2fB1ct-AZJMox8GYcltm8-fTcfGo0ZFRqqQRr0Y42S9Gcf0sp2SvQkH0D583I1m4mBPqMDyET4jYoT-FGRy_g7klpvVbcmhgc4Ch8DYreY39M7fIdGVsFAsjBJrAlja20FqAYBx5A8YSKNJw1&t=635194267634894084","Greater Than Or Equals To","Greater Than Or Equals"],[11,"/WebResource.axd?d=WJ_4jon7XeZ_3bdX-QvJuDZsKITlZHu5GziOkwDiProSd32V1yuu3Mz676dZpjXQYqUHCRKNPZHyBAvzT5Nc0kihViPEbWyR3W91GonwSdwmrG9-BbKUO38Pz9LoAurs_H0tJpdLa1M2AmOnbCNoKB9GIMwBUOP-vt8I-mcjouRG5whcDHOiA0FUh3BXs-Orj3rnNlGKWpatkdroilb4dg2&t=635194267634894084","Starts With","Starts With"],[12,"/WebResource.axd?d=LwDAOZm-QN0lcrpKB9QPjNufIjyjUWP-1VGBQ_iMlf3lnvU_o0hqWdiHJGreXSuFbUf6NQUJ3LAW-VFX1-vEYkiD3Jl3cZBJKOwqA2ukhH1EHCg5kMp-mZnLqDZ_1_LkrNhmgnXXHOH6sd7StpZJ0dKxJ-qsf9L6WS8DzCxd2FJQsowiOens1g7DyHnJ7PwU5PEofIcP8pCFQSQwYytx51fGHJ0TmTEyaPglz_MaOvs1&t=635194267634894084","Does Not Start With","Does Not Start With"],[13,"/WebResource.axd?d=kRzoQlEGTweltbsH8i3nfTGTty8rkjbopCM3DxfqU0FRRMuLq3QQKEaYNONZ8EWbnl4TdAZdmfk1E1nva5mtb4ZS7BbODm4MdCQVvkuGDVMZh3Z1wSQf2zo-3JQKS1rt_kfM6657wZYH-rUIrQrcrUUZ7nMRaZ3yv_VauyH65gF2LZEYBD7-Cgrrevy90QsDjNbjv55Tqy81B0TfOF3LKw2&t=635194267634894084","Ends With","Ends With"],[14,"/WebResource.axd?d=kHPToT8JJJ-UWxSsBKNOfNasa0qR6mH1_VWZezzKdAarJKsY5N8JluUnWQZQwdgvIkxOyXhRr2ngFvGP2fK-EQ5-7o5oor8GrR2Oa60yQG9KAliFZyOab5Spb_McKiZZyYFcWBY_mX2LU1WFPCgXQHG1gXWESKPrs6k90xKjuKojT25_l2_kHcYKPFA9-AJ8b60jAznyZigcCZHAEkG59pCmZKCHMvEx59_mjhTpcsM1&t=635194267634894084","Does Not End With","Does Not End With"],[15,"/WebResource.axd?d=6b70vtFxLSxL5NwcoB59esck4G22Zpv6F0KfgRJuv0ThvHBN9S01z1S9tWhTIJX_cI629ti0KJIyKdfzFzo_MK_bgcvY3L5N9B6LNikDIovotPsosWLYnHnw8hFTKPhi1hcDZ5I511yI3AbR-_XRrLrT317s-OlA2pHgL7rMkxvHVCe55kvh9inszGnUwzGfcADuAI4Tfq0g3fEMj4kUqQ2&t=635194267634894084","Contains","Contains"],[16,"/WebResource.axd?d=a7uV3yCImsgKqBpPyz6yhafERYKjnaK0JHQzEVqufvKYghQpcbVynOB9o2g6wMRZ4bUPSuUDTLXqxj-SdacwMQ5IAY48mMBOOK7jFjk6MQa57kTUQLtIiCA_JrLifRx_DlaiOIw6dDkps2kiSTEIX2reGGvnnxGHTiN6Wkj5Z6pfwWNqANXvzTTFAFsOqXaFRw7KGzxygsRj3eHIUJ_Ie2TL_mywHgG87ie-ypk5gUg1&t=635194267634894084","Does Not Contain","Does Not Contain"]],"","ig_77127745_6","","","",1],[["",2,0,0,0,"ig_77127745_1","",0,0,1,2,"/WebResource.axd?d=QMBi3dxuHbR_QbUGpqjcUSATl6dio-9oQ2Y98Rc2w1LvbQf9j4FVkmyAQRcyrhawgkJhhdf6mN_E1yBGtS-zUKXD61HPUGYrGwlF5Aj9S19mkUnzNqgT4CKVlXX5fQdDgiRV4IB-LL1y_V3UNmxHJZuTPprfm65vp9fT1oc4DJOD0DvkqZDNZ9w2iJQGtUkBg5x-ZmYYbkLAb4IxW2yxIw2&t=635194267634894084","/WebResource.axd?d=FNoA6IHpuYKZKCMdDRNyhuF0CiM2sTLKT2MtKMJiBkiYgrzpUb5ZR-ZlTLGDo2jvwdKFr-P4QUlR4ZdxhLrscluP2up1lo_9tpyS7EDO_jIehUwjN8_MRBmrMCFczAmIUj4CFvu7pZ5VEPDfDpCdxhl97sUkkuzex1E-yEu2uNQDer3lVnGDyvNAmEzoG2rIPME1CjktGVxWf8LYGSJGWQ2&t=635194267634894084","/WebResource.axd?d=VRedN8oNdKjRk-K6MQwR8mSHGrwvk8_9CY7qkxyTyNL_b1-zgjHqdTsxC_dEA_AE3q1xlb0YlKNFMs5SdeKQJUsdx9Ec5CI7VOWtmY-Ldl1Wk2FggVW9BJ2LLq3_C4bpHDCGcUC9N7bNO7fB5dgsooKJxSHbnBp7WEV-Q-tzYul-MV-EHyJrbAEr2isZxcpBulpZ80wl-pB8yFGbkQ_cHw2&t=635194267634894084","21px","ig_77127745_9",0,"/WebResource.axd?d=_Ivgriu18aeTNK7oTzEMq6Jt2VKOBbcLDgdJ5ygrhBRBZq3vSivVxYSG14izBNTARQPTJ39SzyHiiWhH8LSeCDEIFS6T-3HiNW4Mezg8SJskKy1L-CCu3FP4KVOKuQBRYDcK5FGqaGWbN5Q306cpR879RUi5ds_vc_a0jZcB2FV6UAbWktjEO1X0VVFY7Xk-JbuAogReNsmIyIsK8gE_Wg2&t=635194267634894084","ig_77127745_3","",0,"ig_77127745_2",0,true,false,"ig_77127745_4","ig_77127745_2","","ig_77127745_8","ig_77127745_8","ig_77127745_8",0,0,0,0,0,"","ctl00xContentPlaceHolder1xuwgCourses_rowtempl_0",[],1,false,22,"","","","",0,1,1,false,false,1,2,2,"",true,1,1,1,"(All)","(Empty)","(NonEmpty)",[],0,"0","2","ig_77127745_5","ig_77127745_7",2,0,2,1,1,1,"","","","","",["Equals","Not Equals","Like","Not Like","Less Than","Less Than Or Equals","Greater Than","Greater Than Or Equals","Starts With","Does Not Start With","Ends With","Does Not End With","Contains","Does Not Contain"],0]],[[["","Course Code",8,0,false,1,0,2,0,0,0,0,false,"",false,0,"","","ig_77127745_8","ig_77127745_8",0,"",[],"","","",0,[],"","","70px",true,false,false,"","width:100%;height:100%;",false,"",0,"","","",false,"","","","",false,[],2,1,1,0,3,1,0],["","Course Title",8,0,false,1,0,2,0,0,0,0,false,"",false,0,"","","ig_77127745_8","ig_77127745_8",0,"",[],"","","",0,[],"","","250px",true,false,false,"","width:100%;height:100%;",false,"",0,"","","",false,"","","","",false,[],2,1,1,0,3,1,0],["","Course Unit",8,0,false,1,0,2,0,0,0,0,false,"",false,0,"","","ig_77127745_8","ig_77127745_8",0,"",[],"","","",0,[],"","","65px",true,false,false,"","width:100%;height:100%;",false,"",0,"","","",false,"","","","",false,[],2,1,1,0,3,1,0],["","Course Type",8,0,false,1,0,2,0,0,0,0,false,"",false,0,"","","ig_77127745_8","ig_77127745_8",0,"",[],"","","",0,[],"","","150px",true,false,false,"","width:100%;height:100%;",false,"",0,"","","",false,"","","","",false,[],2,1,1,0,3,1,0],["","Approved",8,0,false,1,0,0,0,0,0,0,false,"",false,0,"","","ig_77127745_8","ig_77127745_8",0,"",[],"","","",0,[],"","","65px",true,false,false,"","width:100%;height:100%;",false,"",0,"","","",false,"","","","",false,[],2,1,1,0,3,1,0]]],[["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0]],[-1,50,50,[],[],[],"","","",0,0,"/WebResource.axd?d=S6ZGWfSIxX9hbsP-K3c6oK4-Uirqp6fmpM3EvRRzDnYPlwcaj1jvbQFxwXPb74VRWBtfrkcxEfiRq-RvCXD6vx5JZih1Aqk_JwsoEj1TCRsrV0YE9EQdSOrVvPeYJRjg6Vdd_tbmM5cIhKdRd-tPJAGgBbDaf2j6D_sdApmODmB9K34fY1lQrOVon9Et5PMAAylecQVg74q4LAwGTjUOJQ2&t=635194267634894084","",[],,-1]);
+
+//--></script></form>
+
+
+</body></html>
